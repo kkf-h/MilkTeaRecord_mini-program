@@ -1,0 +1,61 @@
+<view class="custom-nav-bar" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-title">一杯不落</view>
+</view>
+
+
+<view class="container" style="margin-top: {{statusBarHeight + 44}}px;">
+  <view class="section">
+    <view class="section-title">我的品牌</view>
+    <view class="brand-grid">
+      <view class="brand-item" wx:for="{{displayedBrands}}" wx:key="brand">
+        {{item.brand}}
+      </view>
+      <view class="expand-brands-btn" wx:if="{{isBrandOverflow}}" bindtap="showBrandModal">
+      展开
+    </view>
+      <view class="no-record" wx:if="{{allSortedBrands.length === 0}}">还没有记录过任何品牌</view>
+    </view>
+  </view>
+
+  <view class="section func-list">
+    <button class="func-item" bindtap="handleClearData">
+      <text>清空记录</text>
+      <text class="arrow">></text>
+    </button>
+    <button class="func-item" bindtap="showHelpModal">
+      <text>使用说明</text>
+      <text class="arrow">></text>
+    </button>
+
+     <button class="func-item" open-type="feedback">
+      <text>意见反馈</text>
+      <text class="arrow">></text>
+     </button>
+  </view>
+
+  <view class="slogan-text">
+    一杯不落，全糖不慌~
+  </view>
+
+  <view class="modal-mask" wx:if="{{isBrandModalShow}}" bindtap="hideBrandModal"></view>
+  <view class="modal-dialog" wx:if="{{isBrandModalShow}}">
+    <view class="modal-title">所有品牌记录</view>
+    <view class="modal-close" bindtap="hideBrandModal">×</view>
+    <scroll-view scroll-y class="brand-modal-list">
+      <view class="brand-modal-item" wx:for="{{allSortedBrands}}" wx:key="brand">
+        <text>{{item.brand}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <view class="modal-mask" wx:if="{{isHelpModalShow}}" bindtap="hideHelpModal"></view>
+  <view class="modal-dialog" wx:if="{{isHelpModalShow}}">
+    <view class="modal-title">使用说明</view>
+    <view class="modal-close" bindtap="hideHelpModal">×</view>
+    <view class="help-content">
+      <text>这是一个纯本地的奶茶记录小程序。所有数据都存储在您的手机上，不会上传到任何服务器，请放心使用。\n\n功能简介：\n1. 日历页：记录和查看每日的奶茶消费。\n2. 统计页：按不同维度分析您的消费情况。\n3. 我的页：管理数据和查看品牌信息。</text>
+    </view>
+    <button class="btn-confirm" bindtap="hideHelpModal">我明白了</button>
+  </view>
+
+</view>

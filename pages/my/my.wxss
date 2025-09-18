@@ -1,0 +1,171 @@
+/* pages/my/my.wxss */
+.custom-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #F3CACD; /* 与主题色一致 */
+  z-index: 1000;
+  height: 44px; /* 标准导航栏内容高度 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-title {
+  color: black;
+  font-family: "Microsoft YaHei", "微软雅黑", sans-serif; /* 需求3：设置字体 */
+  font-size: 18px; /* 需求3：比默认的16px或17px大一号 */
+  font-weight: 500;
+}
+
+
+
+
+.container { 
+  padding: 0 20rpx; 
+  padding-top: 10rpx;
+  padding-bottom: 40rpx; /* 为底部文字留出空间 */
+}
+.section { 
+  background: #fff; /* 设置白色背景 */
+  border-radius: 20rpx; /* 设置圆角 */
+  margin-top: 20rpx; /* 与上一个元素的间距 */
+  padding: 30rpx; 
+  position: relative;
+  box-shadow: 0 4rpx 12rpx rgba(207, 160, 165, 0.1);
+}
+.section-title { font-size: 30rpx; font-weight: bold; margin-bottom: 20rpx; padding-left: 0; color: #333; }
+
+.brand-grid { 
+  display: flex; 
+  flex-wrap: wrap; 
+  padding-bottom: 50rpx;
+}
+.brand-item {
+  background: #fcf1f0; /* 修改底色 */
+  color: #a5787d;
+  font-weight: 500;
+  padding: 10rpx 20rpx;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+  margin: 0 15rpx 15rpx 0;
+}
+.no-record { color: #999; font-size: 26rpx; width: 100%; }
+.expand-brands-btn:active,
+.modal-close:active {
+  background-color: #fcfcfc;
+}
+/* ... 其他样式不变 ... */
+
+.expand-brands-btn {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.expand-brands-btn {
+  position: absolute;
+  bottom: 20rpx;
+  right: 20rpx;
+  color: #a15f66;
+  font-size: 26rpx;
+  cursor: pointer;
+  /* 为点击效果增加内边距和圆角，使其更美观 */
+  padding: 10rpx 15rpx;
+  border-radius: 10rpx;
+}
+
+.func-list { padding: 0; }
+/* 【修改】这是 view 和 button 共享的基础样式 */
+.func-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 20rpx;
+  border-bottom: 1rpx solid #f3eae8;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+}
+/* 最后一个功能项没有下边框 */
+.func-list .func-item:last-child {
+  border-bottom: none;
+}
+
+.arrow { 
+  color: #ccc;
+  position: absolute;  /* 改为绝对定位 */
+  right: 20rpx;       /* 固定在右侧20rpx处 */
+  top: 50%;           /* 垂直居中 */
+  transform: translateY(-50%); /* 精确垂直居中 */
+}
+
+.func-item text:first-child {
+  flex: 1; /* 占据剩余空间，将箭头推到最右 */
+  padding-right: 40rpx; /* 防止文字与箭头重叠 */
+}
+
+/* 【新增】专门针对 button 元素的样式重置，使其外观与 view 一致 */
+button.func-item {
+  /* 重置背景色和边框 */
+  background-color: #fff;
+  border: none;
+  border-radius: 0;
+  
+  /* 重置内外边距 */
+  margin: 0;
+  
+  /* 重置文字样式 */
+  text-align: left;
+  font-size: inherit; /* 与 view 保持一致 */
+  font-weight: normal; /* 关键：去除按钮默认的加粗 */
+  color: inherit;
+  
+  /* 重置按钮在flex布局中的行为 */
+  line-height: normal; /* 关键：去除按钮默认的行高 */
+  padding: 30rpx 20rpx; /* 确保与view一致 */
+  width: 100%;
+}
+/* 【新增】去除按钮点击后的默认边框 */
+button.func-item::after {
+  border: none;
+
+
+  
+}
+
+.slogan-text {
+  width: 100%;
+  text-align: center;
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #c5b8b6;
+}
+
+
+/* 【新增】通用弹窗样式 (可复用) */
+.modal-mask { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10; }
+.modal-dialog { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85%; max-width: 600rpx; background: #fff; border-radius: 10rpx; z-index: 20; padding: 30rpx; box-sizing: border-box; }
+.modal-title { text-align: center; font-size: 32rpx; font-weight: bold; margin-bottom: 30rpx; }
+.modal-close {
+  position: absolute;
+  top: 15rpx;
+  right: 15rpx;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  color: #999;
+  line-height: 1;
+}
+
+/* 品牌弹窗列表样式 */
+.brand-modal-list { max-height: 60vh; }
+.brand-modal-item { display: flex; justify-content: space-between; padding: 20rpx 10rpx; border-bottom: 1rpx solid #f0f0f0; font-size: 28rpx; }
+.brand-modal-item:last-child { border-bottom: none; }
+
+/* 帮助弹窗内容样式 */
+.help-content { font-size: 28rpx; line-height: 1.6; margin-bottom: 40rpx; white-space: pre-wrap; }
+.btn-confirm { background-color: #f0aeb2; color: white; margin-top: 20rpx; }

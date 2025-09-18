@@ -1,0 +1,58 @@
+/* app.wxss */
+/* app.wxss */
+page {
+  background-color: #fcfcfc;
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+.section {
+  margin: 20rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 20rpx;
+  color: #333;
+}
+
+.list-header {
+  display: flex;
+  padding: 15rpx 0;
+  border-bottom: 1rpx solid #eee;
+  font-weight: bold;
+}
+
+.list-header text {
+  flex: 1;
+  text-align: center;
+}
+
+.record-item, .brand-item {
+  display: flex;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+}
+
+.record-item text, .brand-item text {
+  flex: 1;
+  text-align: center;
+}
+
+.add-btn {
+  position: fixed;
+  right: 40rpx;
+  bottom: 80rpx;
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background: #07C160;
+  color: #fff;
+  font-size: 50rpx;
+  line-height: 80rpx;
+  text-align: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+}

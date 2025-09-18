@@ -1,0 +1,88 @@
+<view class="custom-nav-bar" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-title">一杯不落</view>
+</view>
+
+
+<view class="container" style="margin-top: {{statusBarHeight + 44}}px;">
+  <view class="filter-bar">
+    <view class="tabs">
+      <view class="tab-item {{filterType === 'month' ? 'active' : ''}}" bindtap="changeFilterType" data-type="month">月统计</view>
+      <view class="tab-item {{filterType === 'year' ? 'active' : ''}}" bindtap="changeFilterType" data-type="year">年统计</view>
+      <view class="tab-item {{filterType === 'custom' ? 'active' : ''}}" bindtap="changeFilterType" data-type="custom">自定义</view>
+    </view>
+    
+    <view class="specific-picker-area">
+      <view class="picker-container" wx:if="{{filterType === 'month'}}">
+        <picker mode="date" fields="month" value="{{selectedMonth}}" end="{{currentDate}}" bindchange="onMonthChange">
+          <view class="picker-display">当前选择：{{selectedMonth}}</view>
+        </picker>
+      </view>
+
+      <view class="picker-container" wx:if="{{filterType === 'year'}}">
+        <picker mode="date" fields="year" value="{{selectedYear}}" end="{{currentDate}}" bindchange="onYearChange">
+          <view class="picker-display">当前选择：{{selectedYear}} 年</view>
+        </picker>
+      </view>
+
+      <view class="custom-date-picker" wx:if="{{filterType === 'custom'}}">
+        <picker mode="date" value="{{startDate}}" end="{{currentDate}}" bindchange="onDateChange" data-type="start">
+          <view class="picker">{{startDate}}</view>
+        </picker>
+        <text>至</text>
+        <picker mode="date" value="{{endDate}}" end="{{currentDate}}" bindchange="onDateChange" data-type="end">
+          <view class="picker">{{endDate}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="white-box">
+    <view class="overview">
+      <view class="overview-item">
+        <view class="value">{{summary.totalCups}}</view>
+        <view class="label">总杯数</view>
+      </view>
+      <view class="overview-item">
+        <view class="value">¥ {{summary.totalAmount}}</view>
+        <view class="label">总金额</view>
+      </view>
+      <view class="overview-item">
+        <view class="value">¥ {{summary.avgPrice}}</view>
+        <view class="label">平均价格</view>
+      </view>
+    </view>
+  </view>
+
+ <view class="white-box">
+  <view class="brand-stats">
+    <view class="list-header">
+      <view>品牌</view>
+      <view bindtap="handleSort" data-key="cups">杯数 {{sort.key === 'cups' ? (sort.order === 'asc' ? '↑' : '↓') : ''}}</view>
+      <view bindtap="handleSort" data-key="amount">总金额 {{sort.key === 'amount' ? (sort.order === 'asc' ? '↑' : '↓') : ''}}</view>
+    </view>
+    <view class="list-item" wx:for="{{brandStats}}" wx:key="brand" bindtap="showBrandDetails" data-brand="{{item.brand}}">
+      <view>{{item.brand}}</view>
+      <view>{{item.cups}} 杯</view>
+      <view>¥ {{item.amount}}</view>
+    </view>
+     <view class="no-record" wx:if="{{brandStats.length === 0}}">该时段无记录</view>
+  </view>
+</view>
+
+
+<view class="modal-mask" wx:if="{{isDetailModalShow}}" bindtap="hideDetailModal"></view>
+  <view class="modal-dialog detail-modal" wx:if="{{isDetailModalShow}}">
+    <view class="modal-title">{{currentBrandDetails.brand}} 的所有记录</view>
+    <view class="modal-close" bindtap="hideDetailModal">×</view>
+    <scroll-view scroll-y class="detail-list">
+        <view class="detail-item" wx:for="{{currentBrandDetails.records}}" wx:key="id">
+          <view><text class="detail-label">日 期：</text>{{item.date}}</view>
+          <view><text class="detail-label">名 称：</text>{{item.name}}</view>
+          <view><text class="detail-label">价 格：</text>¥{{item.price || '-'}}</view>
+          <view><text class="detail-label">评 分：</text>{{item.rating || '-'}}</view>
+          <view><text class="detail-label">备 注：</text>{{item.notes || '无'}}</view>
+        </view>
+    </scroll-view>
+    <button class="btn-confirm" bindtap="hideDetailModal">关闭</button>
+  </view>
+</view>

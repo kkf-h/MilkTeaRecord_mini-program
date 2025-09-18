@@ -1,0 +1,185 @@
+/* 同样，请自行美化 */
+.custom-nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #F3CACD; /* 与主题色一致 */
+  z-index: 1000;
+  height: 44px; /* 标准导航栏内容高度 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.nav-title {
+  color: black;
+  font-family: "Microsoft YaHei", "微软雅黑", sans-serif; /* 需求3：设置字体 */
+  font-size: 18px; /* 需求3：比默认的16px或17px大一号 */
+  font-weight: 500;
+}
+
+
+
+
+.container { 
+  padding: 20rpx; 
+  padding-top: 30rpx;
+}
+.white-box {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 12rpx rgba(207, 160, 165, 0.1);
+}
+
+.filter-bar { margin-bottom: 10rpx; }
+.tabs { display: flex; border: 1rpx solid #e6afb5; border-radius: 10rpx; overflow: hidden; }
+.tab-item { flex: 1; padding: 15rpx; text-align: center; color: #e6afb5; }
+.tab-item.active { background: #e6afb5; color: #fff; }
+
+.specific-picker-area {
+  padding: 30rpx 0;
+  text-align: center;
+}
+.picker-display {
+  display: inline-block;
+  padding: 10rpx 40rpx;
+  border: 1rpx solid  #F3CACD;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  background-color: #fcfcfc;
+}
+/* 自定义时间段选择器的样式 */
+.custom-date-picker { display: flex; justify-content: space-around; align-items: center; font-size: 28rpx; }
+.picker { border: 1rpx solid #F3CACD; padding: 10rpx 20rpx; border-radius: 5rpx; background-color: #fcfcfc;}
+
+
+.overview { display: flex; justify-content: space-around; } /* 移除原有背景色等 */
+.overview-item { text-align: center; }
+.overview-item .value { font-size: 40rpx; font-weight: bold; color: #e68499; }
+.overview-item .label { font-size: 24rpx; color: #666; margin-top: 10rpx; }
+
+.brand-stats .list-header, .brand-stats .list-item { display: flex; padding: 20rpx 0; border-bottom: 1rpx solid #f3eae8; }
+/* ... 其他样式不变 ... */
+.no-record { text-align: center; color: #999; padding: 40rpx; }
+
+
+
+/* 品牌统计列表 */
+.brand-stats .list-header, .brand-stats .list-item { 
+  display: flex; 
+  padding: 20rpx 0; 
+  border-bottom: 1rpx solid #f3eae8; 
+  align-items: center; 
+}
+.brand-stats .list-header view, .brand-stats .list-item view {
+  flex: 1;
+  text-align: center;
+  padding: 0 5rpx; /* 增加一点点内边距，防止文字贴边 */
+
+  /* 关键：强制长单词或数字换行 */
+  word-break: break-all; 
+  
+  /* white-space 默认为 normal (允许换行)，无需修改 */
+  /* 如果之前有设置 white-space: nowrap，请务必移除 */
+}
+.brand-stats .list-item:last-child {
+  border-bottom: none;
+}
+
+.detail-modal .detail-list { 
+  max-height: 60vh; 
+  margin-bottom: 30rpx; 
+}
+
+/* 【修改】为记录明细项增加分隔符和间距 */
+.detail-item {
+  font-size: 26rpx;
+  padding-bottom: 20rpx; /* 增加底部内边距 */
+  margin-bottom: 20rpx; /* 增加下外边距 */
+  border-bottom: 1rpx solid #f3eae8; /* 添加分隔线 */
+}
+/* 最后一个记录项不需要分隔线 */
+.detail-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.detail-item view {
+  line-height: 1.6; /* 增加行高，更易读 */
+  
+}
+
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 10;
+}
+.modal-dialog {
+  position: fixed;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 85%;
+  max-width: 600rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  z-index: 20;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.modal-title {
+  text-align: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 30rpx;
+  color: #333;
+}
+.modal-close {
+  position: absolute;
+  top: 15rpx;
+  right: 15rpx;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  color: #999;
+  line-height: 1;
+}
+.modal-close:active {
+  background-color: #f0f0f0;
+}
+
+.detail-modal .detail-list { 
+  max-height: 60vh; 
+  margin-bottom: 40rpx; 
+}
+
+.detail-item {
+  font-size: 28rpx;
+  padding-bottom: 20rpx;
+  margin-bottom: 20rpx;
+  border-bottom: 1rpx solid #f3eae8;
+  color: #555;
+}
+.detail-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.detail-item view {
+  line-height: 1.6;
+}
+.detail-label {
+  color: #999;
+}
+.btn-confirm {
+  background-color: #f0aeb2;
+  color: white;
+}

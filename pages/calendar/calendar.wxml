@@ -1,0 +1,96 @@
+<view class="custom-nav-bar" style="padding-top: {{statusBarHeight}}px;">
+  <view class="nav-title">一杯不落</view>
+</view>
+
+<view class="container" style="margin-top: {{statusBarHeight + 44}}px;">
+  <view class="nav-bar">
+    <view class="nav-control" bindtap="handlePrevMonth">
+      <image class="nav-icon" src="/assets/icons/leftarrow.png" mode="aspectFit"></image>
+      <text>上一月</text>
+    </view>
+
+    <picker mode="date" fields="month" value="{{currentMonthForPicker}}" end="{{currentDate}}" bindchange="onMonthPickerChange">
+      <view class="current-month">{{currentYear}}年{{currentMonth}}月</view>
+    </picker>
+
+  
+    <view class="nav-control" bindtap="handleNextMonth">
+      <text>下一月</text>
+      <image class="nav-icon" src="/assets/icons/rightarrow.png" mode="aspectFit"></image>
+    </view>
+  </view>
+
+   <view class="white-box">
+    <view class="calendar">
+      <view class="header">
+        <view wx:for="{{['日', '一', '二', '三', '四', '五', '六']}}" wx:key="index">{{item}}</view>
+      </view>
+      <view class="days">
+        <view class="day-item {{item.day === '' ? 'empty' : ''}}" wx:for="{{days}}" wx:key="index" bindtap="handleDayClick" data-date="{{item.fullDate}}" hover-class="item-hover">
+          <image wx:if="{{item.hasRecord}}" class="record-icon-bg" src="/assets/icons/record.png" mode="aspectFit"></image>
+          <view class="day-number">{{item.day}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="white-box">
+    <view class="record-list">
+      <view class="list-header">
+        <view bindtap="handleSort" data-key="date">日期 {{sort.key === 'date' ? (sort.order === 'asc' ? '↑' : '↓') : ''}}</view>
+        <view>品牌</view>
+        <view>名称</view>
+        <view bindtap="handleSort" data-key="price">价格 {{sort.key === 'price' ? (sort.order === 'asc' ? '↑' : '↓') : ''}}</view>
+      </view>
+      <view class="list-item" wx:for="{{monthlyRecords}}" wx:key="id" bindtap="handleRecordClick" data-id="{{item.id}}">
+        <view>{{item.date}}</view>
+        <view>{{item.brand}}</view>
+        <view>{{item.name}}</view>
+        <view>¥{{item.price || '-'}}</view>
+      </view>
+      <view class="no-record" wx:if="{{monthlyRecords.length === 0}}">本月还没有喝奶茶哦~</view>
+    </view>
+  </view>
+
+  <button class="add-btn" bindtap="showAddModal">+</button>
+
+  <view class="modal-mask" wx:if="{{isModalShow}}"></view>
+  <view class="modal-dialog" wx:if="{{isModalShow}}">
+    <view class="modal-title">{{modalMode === 'add' ? '记录一杯奶茶' : '编辑奶茶记录'}}</view>
+    <view class="modal-close" bindtap="hideModal">×</view>
+
+    <form bindsubmit="handleFormSubmit">
+      <view class="form-item">
+        <label>日期</label>
+        <picker mode="date" value="{{formData.date}}" bindchange="onDateChange" data-field="date">
+            <view class="picker-display">{{formData.date}}</view>
+        </picker>
+      </view>
+      <view class="form-item">
+        <label>品牌</label>
+        <input name="brand" placeholder="请输入奶茶品牌" value="{{formData.brand}}" bindinput="onFormInputChange" data-field="brand"/>
+      </view>
+      <view class="form-item">
+        <label>名称</label>
+        <input name="name" placeholder="请输入奶茶名称" value="{{formData.name}}" bindinput="onFormInputChange" data-field="name"/>
+      </view>
+      <view class="form-item">
+        <label>价格</label>
+        <input name="price" type="digit" placeholder="请输入奶茶价格" value="{{formData.price}}" bindinput="onFormInputChange" data-field="price"/>
+      </view>
+       <view class="form-item">
+        <label>评分</label>
+        <input name="rating" type="number" placeholder="请输入奶茶评分" value="{{formData.rating}}"  bindinput="onFormInputChange" data-field="rating"/>
+      </view>
+      <view class="form-item">
+        <label>备注</label>
+        <textarea name="notes" placeholder="糖度、小料等" value="{{formData.notes}}" bindinput="onFormInputChange" data-field="notes"/>
+      </view>
+      
+      <view class="modal-footer">
+        <button class="btn-save {{isFormDirty ? 'dirty' : ''}}" form-type="submit">保存</button>
+        <button class="btn-delete" wx:if="{{modalMode === 'edit'}}" bindtap="handleDeleteRecord">删除</button>
+      </view>
+    </form>
+  </view>
+</view>

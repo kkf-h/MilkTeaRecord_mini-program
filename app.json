@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/calendar/calendar",
+    "pages/statistics/statistics",
+    "pages/my/my"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F3CACD",
+    "navigationBarTitleText": "一杯不落",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#CFA0A5",
+    "list": [
+      {
+        "pagePath": "pages/calendar/calendar",
+        "text": "日历",
+        "iconPath": "assets/icons/calendar.png",
+        "selectedIconPath": "assets/icons/calendarpress.png"
+      },
+      {
+        "pagePath": "pages/statistics/statistics",
+        "text": "统计",
+        "iconPath": "assets/icons/statistics.png",
+        "selectedIconPath": "assets/icons/statisticspress.png"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的",
+        "iconPath": "assets/icons/my.png",
+        "selectedIconPath": "assets/icons/mypress.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
